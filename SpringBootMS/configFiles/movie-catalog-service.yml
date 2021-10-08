@@ -23,4 +23,5 @@ management:
     health:
       show-details: always
         
-        
+main:
+  message: Hi from config server
