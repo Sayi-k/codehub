@@ -40,7 +40,5 @@ class Outer {
 	}
 
 	public void print() {
-		// TODO Auto-generated method stub
-
 	}
 }

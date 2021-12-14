@@ -10,11 +10,12 @@ public class Palindrome {
 		String word = scan.next();
 		scan.close();
 
-		StringBuilder builder = new StringBuilder();
-		for (int i = word.length() - 1; i >= 0; i--) {
-			builder.append(word.charAt(i));
-		}
-		String reverseWord = builder.toString();
+		StringBuilder builder = new StringBuilder(word);
+		/*
+		 * for (int i = word.length() - 1; i >= 0; i--) {
+		 * builder.append(word.charAt(i)); } String reverseWord = builder.toString();
+		 */
+		String reverseWord = builder.reverse().toString();
 		System.out.println(reverseWord);
 		if (word.equals(reverseWord)) {
 			System.out.println("Its is palindrome");
