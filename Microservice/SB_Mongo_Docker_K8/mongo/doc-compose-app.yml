@@ -1,0 +1,41 @@
+version: '3.1'
+services:
+  mongodb:
+    image: mongo:4.4
+    container_name: mongo-db
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_DB_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_DB_PASSWORD
+#    volumes:
+#    - mongo-data:/data/db
+  mongo-express:
+    image: mongo-express:1.0.0-alpha
+    container_name: mongo-express-ui
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo-db
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=$MONGO_DB_USERNAME
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=$MONGO_DB_PASSWORD
+    depends_on:
+      - mongodb
+  mongo-app:
+    image: naiksayi09/mongo-app:2.0
+    container_name: mongo-app
+    ports:
+      - 8090:8090
+    environment:
+      - spring_data_mongodb_username=$MONGO_DB_USERNAME
+      - spring_data_mongodb_password=$MONGO_DB_PASSWORD
+      - spring_data_mongodb_host=mongodb
+      - spring_data_mongodb_database=user_db
+      - spring_data_mongodb_port=27017
+      - spring_data_mongodb_authentication-database=admin
+    depends_on:
+      - mongodb
+#volumes:
+#  mongo-data:
+#    driver: local

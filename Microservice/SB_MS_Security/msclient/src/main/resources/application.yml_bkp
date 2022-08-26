@@ -1,0 +1,22 @@
+server:
+  port: 8780
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          oauth2-client-credential:
+            clientId: oauth2-client-credential
+            clientSecret: B93j03VlneYokHKhEIsSdlens8ccA72v
+            scope:
+              - openid
+              - profile
+              - roles
+            authorizationGrantType: client-credentials
+        provider:
+          oauth2-client-credential:
+            issuerUri: http://localhost:8080/realms/Microservice
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/realms/Microservice/protocol/openid-connect/certs

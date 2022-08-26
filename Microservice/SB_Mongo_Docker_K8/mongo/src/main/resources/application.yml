@@ -1,0 +1,14 @@
+server:
+  port: 8090
+
+spring:
+  data:
+    mongodb:
+      username: '${MONGO_APP_USERNAME}'
+      password: '${MONGO_APP_PASSWORD}'
+      host: '${MONGO_APP_HOST}'
+      database: '${MONGO_APP_DB}'
+      port: 27017
+      authentication-database: '${MONGO_APP_AUTH_DB}'
+
+

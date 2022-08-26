@@ -1,0 +1,46 @@
+server:
+  port: 8090
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      somename:
+        registerHealthIndicator: true
+        slidingWindowSize: 5
+        slidingWindowType: COUNT_BASED
+        failureRateThreshold: 50
+        eventConsumerBufferSize: 10
+        waitDurationInOpenState: 5s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+
+  retry:
+    instances:
+      somename:
+        maxRetryAttempts: 3
+        waitDuration: 3s
+
+  timelimiter:
+    instances:
+      somename:
+        timeoutDuration: 3s
+
+  ratelimiter:
+    instances:
+      somename:
+        timeoutDuration: 3s
+        limitForPeriod: 5
+        limitRefreshPeriod: 10s
+
+
+management:
+  endpoint:
+    health:
+      show-details: ALWAYS
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    circuitbreakers:
+      enabled: true
