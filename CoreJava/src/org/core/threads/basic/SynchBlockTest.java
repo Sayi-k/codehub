@@ -37,11 +37,11 @@ public class SynchBlockTest {
 
 class One {
 
-	public void doOne() throws InterruptedException {
-		synchronized (One.class) {
+	public synchronized void doOne() throws InterruptedException {
+		//synchronized (One.class) {
 			System.out.println("DoOne");
 			Thread.sleep(2000);
-		}
+		//}
 
 	}
 
